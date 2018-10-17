@@ -1,0 +1,6 @@
+configurar a propriedade buttons: option
+
+https://datatables.net/reference/button/#buttons
+
+
+"column visibility" - A set of Buttons to set the visibility of individual columns

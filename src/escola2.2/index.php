@@ -3,7 +3,7 @@
 
  <head>
   <meta charset="utf8">
-  <title>PHP PDO Ajax CRUD with Data Tables and Bootstrap Modals</title>
+  <title>Listagem Alunos Comitê Cidadania</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 							   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -107,7 +107,7 @@
 
 
 <script type="text/javascript" language="javascript" >
-$(document).ready(function(){	
+$(document).ready(function(){
 	 $('#add_button').click(function(){
 		$('#user_form')[0].reset();
 		$('.modal-title').text("Novo Registro");
@@ -117,6 +117,7 @@ $(document).ready(function(){
 	 });
 	 
 	//Ao acertar esta parte, não aparece paginação 10,25,50, em outros lugares
+	//Arrmei, está ok agora. dataTables é a inicialização do plugin dataTables
  var dataTable = $('#user_data').DataTable({
 	 	 	dom: 'Blfrtip',
 			buttons: [ 
@@ -124,7 +125,7 @@ $(document).ready(function(){
 					extend: 'pdfHtml5',
 					download: 'open',
 					orientation: 'landscape', //landscape: paisagem, portrait:retrato
-					filename: 'report',			//nome do pdf, não funciona ainda
+					title: 'Relatório Comitê Da Cidadania',			//nome do pdf, não funciona ainda
 					extention: 'pdf',
 					//seleciona as colunas no pdf
 					exportOptions: {

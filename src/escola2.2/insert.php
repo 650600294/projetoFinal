@@ -18,9 +18,9 @@ if(isset($_POST["operation"]))
   ");
   $result = $statement->execute(
    array(
-    ':nome' => $_POST["nome"],
-    ':lograd' => $_POST["lograd"],
-    ':foto'  => $image
+    ':nome' 	=> $_POST["nome"],
+    ':lograd'	=> $_POST["lograd"],
+    ':foto'		=> $image
    )
   );
   if(!empty($result))
@@ -28,7 +28,7 @@ if(isset($_POST["operation"]))
    echo 'Dados Inseridos';
   }
  }
- if($_POST["operation"] == "Edit")
+ if($_POST["operation"] == "Editar")
  {
   $image = '';
   if($_FILES["user_image"]["name"] != '')

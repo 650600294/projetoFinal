@@ -5,7 +5,7 @@ include('function.php');
 $query = '';
 $output = array();
 
-$query .= "SELECT foto, nome, lograd FROM alunos ";
+$query .= "SELECT id, foto, nome, lograd FROM alunos ";
 if(isset($_POST["search"]["value"]))
 {
  $query .= 'WHERE nome LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -46,10 +46,17 @@ foreach($result as $row)
  $sub_array[] = $image;
  $sub_array[] = $row["nome"];
  $sub_array[] = $row["lograd"];
-$sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="btn btn-warning btn-xs update">Update</button>';
+$sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="btn btn-warning btn-xs update">Editar</button>';
  $sub_array[] = '<button type="button" name="delete" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">Delete</button>';
 
  $data[] = $sub_array;
+ 
+ /*
+ echo <pre>;
+	print_r($data);
+ echo </pre>;
+ */
+ 
 } 
 $output = array(
  "draw" => intval($_POST["draw"]),
@@ -57,5 +64,8 @@ $output = array(
  "recordsFiltered"	=> get_total_all_records(),
  "data"				=> $data
 );
+
+
 echo json_encode($output);
+
 ?>

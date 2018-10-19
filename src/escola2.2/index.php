@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
  <head>
   <meta charset="utf8">
   <title>Listagem Alunos Comitê Cidadania</title>
@@ -57,7 +56,7 @@
       <tr>
        <th width="10%">Foto</th>
        <th width="30%">Nome</th>
-       <th width="30%">SobreNome</th>
+       <th width="30%">Logradouro</th>
        <th width="10%">Editar</th>
        <th width="10%">Excluir</th>
       </tr>
@@ -80,13 +79,14 @@
   <form method="post" id="user_form" enctype="multipart/form-data">
    <div class="modal-content">
     <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal">&times;</button>
+     <button type="button" class="close" data-dismiss="modal">&times;</button> <!-- &times; é o X q fecha janela -->
      <h4 class="modal-title">Novo Registro</h4>
     </div>
     <div class="modal-body">
      <label>Digite o 1º Nome</label>
      <input type="text" name="nome" id="nome" class="form-control" />
-     <br />Digite o SobreNome</label>
+     <br />
+	 <label>Digite o Endereço</label>
      <input type="text" name="lograd" id="lograd" class="form-control" />
      <br />
      <label>Foto</label>
@@ -104,14 +104,12 @@
  </div>
 </div>
 
-
-
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
 	 $('#add_button').click(function(){
 		$('#user_form')[0].reset();
 		$('.modal-title').text("Novo Registro");
-		$('#action').val("Add");
+		$('#action').val("Add");		
 		$('#operation').val("Add");
 		$('#user_uploaded_image').html('');
 	 });
@@ -134,12 +132,12 @@ $(document).ready(function(){
 				}	/*	botão PDF	*/
 			],		 
  "processing":true,
-  "serverSide":true,  
+  "serverSide":true,
   "order":[],
   "language": {
 	"url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"	/*tradução portuguese-brazil*/
-				},			
-  "ajax":{		  
+				},
+  "ajax":{
    url:"fetch.php",
    type:"POST"
   },
@@ -147,9 +145,9 @@ $(document).ready(function(){
    {
     "targets":[0, 3, 4],
     "orderable":false,
-   },   
+   },
   ]
-  
+
  });
 
  $(document).on('submit', '#user_form', function(event){
@@ -166,8 +164,8 @@ $(document).ready(function(){
     $('#user_image').val('');
     return false;
    }
-  } 
-  if(firstName != '' && lastName != '')
+  }
+  if(nome != '' && lograd != '')
   {
    $.ajax({
     url:"insert.php",
@@ -190,6 +188,7 @@ $(document).ready(function(){
   }
  });
  
+ //botão Update(Editar)
  $(document).on('click', '.update', function(){
   var user_id = $(this).attr("id");
   $.ajax({
@@ -200,7 +199,7 @@ $(document).ready(function(){
    success:function(data)
    {
     $('#userModal').modal('show');
-    $('#nome').val(data.lograd);
+    $('#nome').val(data.nome);
     $('#lograd').val(data.lograd);
     $('.modal-title').text("Editar Registro");
     $('#user_id').val(user_id);
@@ -211,6 +210,7 @@ $(document).ready(function(){
   })
  });
  
+ //evento click do botão delete
  $(document).on('click', '.delete', function(){
   var user_id = $(this).attr("id");
   if(confirm("Tem Certeza?"))

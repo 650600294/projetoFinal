@@ -118,7 +118,21 @@ $(document).ready(function(){
 	//Arrmei, está ok agora. dataTables é a inicialização do plugin dataTables
  var dataTable = $('#user_data').DataTable({
 	 	 	dom: 'Blfrtip',
-			buttons: [ 
+			buttons: [
+				{
+					text: 'JSON',
+					action: function ( e, dt, button, config ) {
+						var data = dt.buttons.exportData();
+	 
+						$.fn.dataTable.fileSave(
+							new Blob( [ JSON.stringify( data ) ] ),
+							'DadosExportados.json'
+						);
+					},
+						exportOptions: {
+						columns: [ 1, 2]
+						},
+				},			
 				{
 					extend: 'pdfHtml5',
 					download: 'open',
@@ -205,7 +219,7 @@ $(document).ready(function(){
     $('#user_id').val(user_id);
     $('#user_uploaded_image').html(data.user_image);
     $('#action').val("Edit");
-    $('#operation').val("Edit");
+    $('#operation').val("Editar");
    }
   })
  });

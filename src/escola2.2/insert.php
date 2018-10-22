@@ -41,10 +41,14 @@ if(isset($_POST["operation"]))
   }
   $statement = $connection->prepare(
    "UPDATE alunos 
-   SET nome = :nome, lograd = :lograd, foto = :foto  
+   SET nome = :nome, lograd = :lograd, foto = :foto
    WHERE id = :id
-   "
-  );
+   ");
+   /*
+   "UPDATE users 
+   SET first_name = :first_name, last_name = :last_name, image = :image  
+   WHERE id = :id"
+   */
   $result = $statement->execute(
    array(
     ':nome' => $_POST["nome"],
@@ -55,7 +59,7 @@ if(isset($_POST["operation"]))
   );
   if(!empty($result))
   {
-   echo 'Data Updated';
+   echo 'Dados Atualizados';
   }
  }
 }

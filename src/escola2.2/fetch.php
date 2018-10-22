@@ -9,7 +9,7 @@ $query .= "SELECT id, foto, nome, lograd FROM alunos ";
 if(isset($_POST["search"]["value"]))
 {
  $query .= 'WHERE nome LIKE "%'.$_POST["search"]["value"].'%" ';
- $query .= 'OR nome LIKE "%'.$_POST["search"]["value"].'%" ';
+ $query .= 'OR lograd LIKE "%'.$_POST["search"]["value"].'%" ';
 }
 if(isset($_POST["order"]))
 {
@@ -50,14 +50,8 @@ $sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="b
  $sub_array[] = '<button type="button" name="delete" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">Delete</button>';
 
  $data[] = $sub_array;
- 
- /*
- echo <pre>;
-	print_r($data);
- echo </pre>;
- */
- 
 } 
+
 $output = array(
  "draw" => intval($_POST["draw"]),
  "recordsTotal"		=> $filtered_rows,
